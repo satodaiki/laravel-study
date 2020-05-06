@@ -11,13 +11,16 @@
 |
 */
 
+use App\Http\Middleware\LogMiddleware;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('hello', 'HelloController@Index');
 Route::get('hello/view', 'HelloController@view');
-Route::get('hello/list', 'HelloController@list');
+Route::get('hello/list', 'HelloController@list')
+    ->name('list');
 
 Route::get('view/escape', 'ViewController@escape');
 Route::get('view/if', 'ViewController@if');
@@ -32,6 +35,7 @@ Route::get('view/list', 'ViewController@list');
 
 Route::get('route/param/{id?}', 'RouteController@param')
     ->where(['id'=>'[0-9]{2,3}']);
+    // ->name('param');
 Route::get('route/search/{keywd}', 'RouteController@search')
     ->where('keywd', '.*');
 Route::prefix('members')->group(function() {
@@ -53,3 +57,18 @@ Route::resources([
 // Route::fallback(function() {
 //     return view('route.error');
 // });
+
+Route::prefix('ctrl')->group(['middleware' => [ 'debug' ]], function() {
+    Route::get('plain', 'CtrlController@plain');
+    Route::get('outJson', 'CtrlController@outJson');
+    Route::get('outFile', 'CtrlController@outFile');
+    Route::get('outImage', 'CtrlController@outImage');
+    Route::get('redirectBasic', 'CtrlController@redirectBasic');
+    Route::get('index', 'CtrlController@index');
+    Route::get('form', 'CtrlController@form');
+    Route::post('result', 'CtrlController@result');
+    Route::get('upload', 'CtrlController@upload');
+    Route::post('uploadfile', 'CtrlController@uploadfile');
+    Route::get('middle', 'CtrlController@middle')
+        ->middleware(LogMiddleware::class);
+});

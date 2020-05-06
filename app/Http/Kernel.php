@@ -16,6 +16,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         \App\Http\Middleware\TrustProxies::class,
         \App\Http\Middleware\CheckForMaintenanceMode::class,
+        \App\Http\Middleware\LogMiddleware::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
@@ -41,6 +42,10 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        'debug' => [
+            \App\Http\Middleware\LogMiddleware::class,
+        ]
     ];
 
     /**
