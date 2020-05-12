@@ -85,3 +85,12 @@ Route::prefix('record')->group(function() {
     Route::get('where', 'RecordController@where');
     Route::get('hasmany', 'RecordController@hasmany');
 });
+
+Route::prefix('save')->group(function() {
+    Route::get('create', 'SaveController@create');
+    Route::post('store', 'SaveController@store');
+    Route::get('{id}/edit', 'SaveController@edit');
+    Route::patch('{id}', 'SaveController@update');
+    Route::get('{id}', 'SaveController@show');
+    Route::delete('{id}', 'SaveController@destroy');
+});
