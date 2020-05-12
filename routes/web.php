@@ -58,7 +58,7 @@ Route::resources([
 //     return view('route.error');
 // });
 
-Route::prefix('ctrl')->group(['middleware' => [ 'debug' ]], function() {
+Route::prefix('ctrl')->group(/** ['middleware' => [ 'debug' ]], */ function() {
     Route::get('plain', 'CtrlController@plain');
     Route::get('outJson', 'CtrlController@outJson');
     Route::get('outFile', 'CtrlController@outFile');
@@ -69,6 +69,13 @@ Route::prefix('ctrl')->group(['middleware' => [ 'debug' ]], function() {
     Route::post('result', 'CtrlController@result');
     Route::get('upload', 'CtrlController@upload');
     Route::post('uploadfile', 'CtrlController@uploadfile');
-    Route::get('middle', 'CtrlController@middle')
-        ->middleware(LogMiddleware::class);
+    Route::get('middle', 'CtrlController@middle');
+        // ->middleware(LogMiddleware::class);
+});
+
+Route::prefix('state')->group(function() {
+    Route::get('recCookie', 'StateController@recCookie');
+    Route::get('readCookie', 'StateController@readCookie');
+    Route::get('session1', 'StateController@session1');
+    Route::get('session2', 'StateController@session2');
 });

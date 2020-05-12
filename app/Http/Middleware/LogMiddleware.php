@@ -25,6 +25,5 @@ class LogMiddleware
         $response = $next($request);
         $response->setContent(mb_strtoupper($response->content()));
         return $response;
-
     }
 }
