@@ -79,3 +79,9 @@ Route::prefix('state')->group(function() {
     Route::get('session1', 'StateController@session1');
     Route::get('session2', 'StateController@session2');
 });
+
+Route::prefix('record')->group(function() {
+    Route::get('find', 'RecordController@find');
+    Route::get('where', 'RecordController@where');
+    Route::get('hasmany', 'RecordController@hasmany');
+});

@@ -8,8 +8,8 @@
 <body>
 
     @foreach ($records as $index => $record)
-        @continue($loop->odd)
-        @break($loop->iteration > 4)
+        {{-- @continue($loop->odd) --}}
+        {{-- @break($loop->iteration > 4) --}}
         <h2>No.{{ $index + 1 }} {{ $record->title }}</h2>
         <ul>
             <li>価格: {{ $record->price }}円</li>
@@ -25,6 +25,7 @@
             <li>$loop->odd : {{ $loop->odd }}</li>
             <li>$loop->depth : {{ $loop->depth }}</li>
             <li>$loop->parent : {{ $loop->parent }}</li>
+            {{-- <li>{{ $record->price_avg }}</li> --}}
         </ul>
     @endforeach
 </body>
