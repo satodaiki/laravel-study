@@ -16,5 +16,3 @@ https://bre.is/BXFjhJWh
 - 状態管理
 - DB連携
 - 入力検証
-
-- [iMi digital](https://www.imi-digital.de/)
